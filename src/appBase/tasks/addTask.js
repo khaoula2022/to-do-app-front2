@@ -39,7 +39,17 @@ function AddTask({ currentId, setcurrentId }) {
   useEffect(() => {
     if (task) setTaskData(task);
   }, [task]);
-
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
+  const handleError = () => {
+    errors.label = "";
+    errors.description = "";
+  };
   const handleClose = () => {
     setOpen(false);
     // clear();
