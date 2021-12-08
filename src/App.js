@@ -5,21 +5,24 @@ import AppBase from "./appBase/AppBase";
 
 import {
   Route,
-  Routes,
-  Navigate,
+  Switch,
+  Redirect,
   useHistory,
   useLocation,
   NavLink,
+  Router,
 } from "react-router-dom";
 
 function App() {
   return (
     <div className="App">
-      <Routes>
-        <Route path="/app">
-          <AppBase />
-        </Route>
-      </Routes>
+      <Router>
+        <Switch>
+          <Route path="/app">
+            <AppBase />
+          </Route>
+        </Switch>
+      </Router>
     </div>
   );
 }
