@@ -10,6 +10,7 @@ import {
 } from "@material-ui/core";
 import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
+import ConfirmDialog from "../confirmation/ConfirmDialog";
 
 import React from "react";
 import { useHistory } from "react-router";
@@ -60,9 +61,13 @@ function SingleTask({ tasks, setCurrentId }) {
               });
             }}
           >
-            <DeleteIcon fontSize="small" /> Leave
+            <DeleteIcon fontSize="small" /> Delete this Task
           </Button>
         </CardActions>
+        <ConfirmDialog
+          confirmDialog={confirmDialog}
+          setConfirmDialog={setConfirmDialog}
+        />
       </Card>
     </div>
   );
