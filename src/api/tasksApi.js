@@ -1,4 +1,4 @@
-import { Axios } from "../features/AppBase/user/axiosfile";
-
+import { Axios } from "../appBase/axiosfile";
 
 const url = "/tasks";
+export const fetchTasks = () => Axios().get(url);
