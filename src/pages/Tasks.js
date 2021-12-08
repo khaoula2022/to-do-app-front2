@@ -1,5 +1,7 @@
+import styles from "./Tasks.module.css";
+
 function Tasks() {
-  return <div></div>;
+  return <div className={styles.fluid}></div>;
 }
 
 export default Tasks;
