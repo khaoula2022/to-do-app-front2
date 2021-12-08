@@ -37,6 +37,7 @@ function AddTask({ currentId, setcurrentId }) {
   const [taskData, setTaskData] = useState({
     label: "",
     description: "",
+    deadline: "",
   });
 
   const dispatch = useDispatch();
@@ -66,6 +67,7 @@ function AddTask({ currentId, setcurrentId }) {
     setTaskData({
       label: " ",
       description: "",
+      deadline: "",
     });
   };
   useEffect(() => {
@@ -143,10 +145,14 @@ function AddTask({ currentId, setcurrentId }) {
               <p>{errors.description?.message} </p>
               <TextField
                 id="date"
-                label="Birthday"
+                label="Deadline"
                 type="date"
-                defaultValue="2017-05-24"
+                defaultValue="01-01-2022"
                 sx={{ width: 220 }}
+                value={taskData.deadline}
+                onChange={(e) =>
+                  setTaskData({ ...taskData, deadline: e.target.value })
+                }
                 InputLabelProps={{
                   shrink: true,
                 }}
