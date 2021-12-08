@@ -5,7 +5,6 @@ import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 
 import { useState } from "react";
-import { selectTasks } from "./../appBase/tasks/taskSlice";
 function Tasks() {
   const [currentId, setcurrentId] = useState(null);
   const dispatch = useDispatch();

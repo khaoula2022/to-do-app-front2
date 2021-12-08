@@ -10,6 +10,7 @@ import React from "react";
 import { useHistory } from "react-router";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
+import styles from "./singleTaskStyles.module.css";
 
 function SingleTask({ tasks, setCurrentId }) {
   const dispatch = useDispatch();
@@ -17,7 +18,7 @@ function SingleTask({ tasks, setCurrentId }) {
 
   return (
     <div>
-      <Card>
+      <Card className={styles.card}>
         <CardHeader title={tasks.label}></CardHeader>
         <CardMedia></CardMedia>
         <CardContent>
