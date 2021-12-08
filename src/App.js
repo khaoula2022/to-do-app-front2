@@ -14,7 +14,19 @@ import {
 } from "react-router-dom";
 
 function App() {
-  return <Suspense fallback={<Loader></Loader>}></Suspense>;
+  const AppBase = React.lazy(() => import("../src/appBase/AppBase"));
+
+  return (
+    <Suspense fallback={<Loader></Loader>}>
+      <Router>
+        <Switch>
+          <Route path="/app">
+            <AppBase />
+          </Route>
+        </Switch>
+      </Router>
+    </Suspense>
+  );
 }
 
 export default App;
