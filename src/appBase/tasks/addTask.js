@@ -10,7 +10,7 @@ import {
 import React from "react";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { createTask } from "./taskSlice";
+import { createTask, update } from "./taskSlice";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -37,11 +37,13 @@ function AddTask({ currentId, setcurrentId }) {
   const [taskData, setTaskData] = useState({
     label: "",
     description: "",
+    deadline: "",
   });
 
   const dispatch = useDispatch();
   const [open, setOpen] = React.useState(false);
   const [openN, setOpenN] = React.useState(false);
+  const [value, setValue] = React.useState(null);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -65,6 +67,7 @@ function AddTask({ currentId, setcurrentId }) {
     setTaskData({
       label: " ",
       description: "",
+      deadline: "",
     });
   };
   useEffect(() => {
@@ -72,13 +75,16 @@ function AddTask({ currentId, setcurrentId }) {
   }, [currentId]);
 
   const submit = (e) => {
-    dispatch(createTask(taskData));
+    if (currentId) {
+      dispatch(update(currentId, taskData));
+    } else {
+      dispatch(createTask(taskData));
+    }
 
     setOpen(false);
     clear();
     handleClick();
   };
-
   const handleClick = () => {
     setOpenN(true);
   };
@@ -124,6 +130,33 @@ function AddTask({ currentId, setcurrentId }) {
                 }
               />
               <p>{errors.label?.message} </p>
+              <TextField
+                variant="outlined"
+                {...register("description")}
+                label="Description"
+                fullWidth
+                multiline
+                rows={4}
+                value={taskData.description}
+                onChange={(e) =>
+                  setTaskData({ ...taskData, description: e.target.value })
+                }
+              />
+              <p>{errors.description?.message} </p>
+              <TextField
+                id="date"
+                label="Deadline"
+                type="date"
+                defaultValue="01-01-2022"
+                sx={{ width: 220 }}
+                value={taskData.deadline}
+                onChange={(e) =>
+                  setTaskData({ ...taskData, deadline: e.target.value })
+                }
+                InputLabelProps={{
+                  shrink: true,
+                }}
+              />
             </DialogContent>
             <DialogActions>
               <Button onClick={handleClose} color="primary">

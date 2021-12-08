@@ -16,7 +16,7 @@ function Tasks() {
   return (
     <div className={styles.fluid}>
       <AddTask currentId={currentId} setcurrentId={setcurrentId}></AddTask>
-      <div className={styles.courses}>
+      <div className={styles.Tasks}>
         {" "}
         <TasksList setcurrentId={setcurrentId} />{" "}
       </div>
