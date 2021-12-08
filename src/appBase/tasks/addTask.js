@@ -127,6 +127,19 @@ function AddTask({ currentId, setcurrentId }) {
                 }
               />
               <p>{errors.label?.message} </p>
+              <TextField
+                variant="outlined"
+                {...register("description")}
+                label="Description"
+                fullWidth
+                multiline
+                rows={4}
+                value={taskData.description}
+                onChange={(e) =>
+                  setTaskData({ ...taskData, description: e.target.value })
+                }
+              />
+              <p>{errors.description?.message} </p>
             </DialogContent>
             <DialogActions>
               <Button onClick={handleClose} color="primary">
