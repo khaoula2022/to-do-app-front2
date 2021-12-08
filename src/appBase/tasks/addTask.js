@@ -9,6 +9,7 @@ import {
 import React from "react";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { createTask } from "./taskSlice";
 
 function AddTask({ currentId, setcurrentId }) {
   const task = useSelector((state) =>
@@ -16,6 +17,8 @@ function AddTask({ currentId, setcurrentId }) {
   );
   const dispatch = useDispatch();
   const [open, setOpen] = React.useState(false);
+  const [openN, setOpenN] = React.useState(false);
+
   const [taskData, setTaskData] = useState({
     label: "",
     description: "",
@@ -39,6 +42,18 @@ function AddTask({ currentId, setcurrentId }) {
   const handleClose = () => {
     setOpen(false);
     clear();
+  };
+
+  const submit = (e) => {
+    dispatch(createTask(taskData));
+
+    setOpen(false);
+    clear();
+    handleClick();
+  };
+
+  const handleClick = () => {
+    setOpenN(true);
   };
 
   return (
