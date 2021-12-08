@@ -1,7 +1,7 @@
 import {
   Route,
-  Switch,
-  Redirect,
+  Routes,
+  Navigate,
   useHistory,
   useLocation,
   NavLink,
@@ -14,14 +14,14 @@ export default function AppBase() {
     <>
       <NavLink to={`/app/tasks/`}>Consulter les taches ici</NavLink>
 
-      <Switch>
+      <Routes>
         <Route exact path="/app">
-          <Redirect to="/app/tasks"></Redirect>
+          <Navigate to="/app/tasks"></Navigate>
         </Route>
         <Route exact path="/app/courses">
           <Tasks></Tasks>
         </Route>
-      </Switch>
+      </Routes>
     </>
   );
 }
