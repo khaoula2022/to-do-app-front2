@@ -4,20 +4,31 @@ import {
   CardMedia,
   CardContent,
   CardActions,
+  Typography,
 } from "@material-ui/core";
 import React from "react";
+import { useHistory } from "react-router";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
 
-function singleTask() {
+function SingleTask({ tasks }) {
+  const dispatch = useDispatch();
+  const history = useHistory();
+
   return (
     <div>
       <Card>
-        <CardHeader></CardHeader>
+        <CardHeader title={tasks.label}></CardHeader>
         <CardMedia></CardMedia>
-        <CardContent></CardContent>
+        <CardContent>
+          <Typography variant="body2" color="textSecondary" component="p">
+            {tasks.description}
+          </Typography>
+        </CardContent>
         <CardActions></CardActions>
       </Card>
     </div>
   );
 }
 
-export default singleTask;
+export default SingleTask;
