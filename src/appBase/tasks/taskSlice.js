@@ -21,13 +21,17 @@ export const taskSlice = createSlice({
       state.values = action.payload;
     },
 
-
     UpdateTask: (state, action) => {
       const payload = action.payload._id;
       state.values = state.values.map((task) =>
         task._id === payload ? action.payload : task
       );
       console.log(action.payload);
+    },
+    deleteTaskReducer: (state, action) => {
+      const payload = action.payload;
+
+      state.values = state.values.filter((task) => task._id !== payload);
     },
   },
 
@@ -37,7 +41,7 @@ export const taskSlice = createSlice({
     },
   },
 });
-export const { gettasks, UpdateTask } = taskSlice.actions;
+export const { gettasks, UpdateTask, deleteTaskReducer } = taskSlice.actions;
 //thunk
 export const update = (id, task) => async (dispatch) => {
   try {
@@ -56,6 +60,13 @@ export const GetTasks = () => async (dispatch) => {
   } catch (error) {
     console.log(error.message);
   }
+};
+
+export const deleteTask = (id) => async (dispatch) => {
+  try {
+    await api.deleteTaskApi(id);
+    dispatch(deleteTaskReducer(id));
+  } catch {}
 };
 
 export const selectTasks = (state) => state.tasks.values;
