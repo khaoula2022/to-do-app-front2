@@ -11,6 +11,11 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 function AddTask() {
+  const [taskData, settaskData] = useState({
+    label: "",
+    description: "",
+    deadline: "",
+  });
   return (
     <div>
       <FormControl>
