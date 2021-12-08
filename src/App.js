@@ -5,12 +5,10 @@ import Loader from "./pages/Loader";
 import Tasks from "./pages/Tasks";
 
 import {
-  Route,
+  BrowserRouter as Router,
   Switch,
+  Route,
   Redirect,
-  useHistory,
-  NavLink,
-  Router,
 } from "react-router-dom";
 
 function App() {
