@@ -77,9 +77,17 @@ function AddTask({ currentId, setcurrentId }) {
           onClose={handleClose}
           aria-labelledby="form-dialog-title"
         >
-          <DialogTitle>
+          <DialogTitle id="form-dialog-title">
+            Create a task here
             <DialogContent>
-              <TextField></TextField>
+              <TextField
+                label="Label"
+                fullWidth
+                value={taskData.label}
+                onChange={(e) =>
+                  setTaskData({ ...taskData, label: e.target.value })
+                }
+              ></TextField>
             </DialogContent>
             <DialogActions></DialogActions>
           </DialogTitle>
