@@ -10,7 +10,16 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createTask } from "./taskSlice";
+import * as yup from "yup";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
 
+const schema = yup.object().shape({
+  label: yup.string().required(" your task should have a label "),
+  description: yup
+    .string()
+    .required(" please provide more details about your task"),
+});
 function AddTask({ currentId, setcurrentId }) {
   const task = useSelector((state) =>
     currentId ? state.tasks.values.find((t) => t._id === currentId) : null
@@ -31,25 +40,13 @@ function AddTask({ currentId, setcurrentId }) {
     if (task) setTaskData(task);
   }, [task]);
 
-  const clear = () => {
-    setcurrentId(null);
-    setTaskData({
-      label: " ",
-      description: "",
-      deadline: "",
-    });
-  };
   const handleClose = () => {
     setOpen(false);
-    clear();
+    // clear();
   };
 
-  const submit = (e) => {
+  const submit = () => {
     dispatch(createTask(taskData));
-
-    setOpen(false);
-    clear();
-    handleClick();
   };
 
   const handleClick = () => {
@@ -89,7 +86,11 @@ function AddTask({ currentId, setcurrentId }) {
                 }
               ></TextField>
             </DialogContent>
-            <DialogActions></DialogActions>
+            <DialogActions>
+              <button type="submit" onClick={submit()}>
+                add task{" "}
+              </button>
+            </DialogActions>
           </DialogTitle>
         </Dialog>
       </FormControl>
