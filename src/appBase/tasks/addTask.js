@@ -16,7 +16,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 
 const schema = yup.object().shape({
-  label: yup.string().required(" your task should have a label "),
+  label: yup.string().required(" your task should have a name "),
   description: yup
     .string()
     .required(" please provide more details about your task"),
@@ -25,22 +25,7 @@ function AddTask({ currentId, setcurrentId }) {
   const task = useSelector((state) =>
     currentId ? state.tasks.values.find((t) => t._id === currentId) : null
   );
-  const dispatch = useDispatch();
-  const [open, setOpen] = React.useState(false);
-  const [openN, setOpenN] = React.useState(false);
-
-  const [taskData, setTaskData] = useState({
-    label: "",
-    description: "",
-    deadline: "",
-  });
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-  useEffect(() => {
-    if (currentId) setOpen(true);
-  }, [currentId]);
-
+  console.log("test");
   const {
     register,
     handleSubmit,
@@ -48,6 +33,19 @@ function AddTask({ currentId, setcurrentId }) {
   } = useForm({
     resolver: yupResolver(schema),
   });
+
+  const [taskData, setTaskData] = useState({
+    label: "",
+    description: "",
+  });
+
+  const dispatch = useDispatch();
+  const [open, setOpen] = React.useState(false);
+  const [openN, setOpenN] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
   const handleError = () => {
     errors.label = "";
     errors.description = "";
@@ -57,27 +55,40 @@ function AddTask({ currentId, setcurrentId }) {
     clear();
     handleError();
   };
+
+  useEffect(() => {
+    if (task) setTaskData(task);
+  }, [task]);
+
   const clear = () => {
+    setcurrentId(null);
     setTaskData({
       label: " ",
       description: "",
     });
   };
+  useEffect(() => {
+    if (currentId) setOpen(true);
+  }, [currentId]);
 
   const submit = (e) => {
-    if (currentId) {
-    } else {
-      dispatch(createTask(taskData));
-    }
+    dispatch(createTask(taskData));
 
     setOpen(false);
     clear();
     handleClick();
   };
+
   const handleClick = () => {
     setOpenN(true);
   };
 
+  const handleCloseNotif = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setOpenN(false);
+  };
   return (
     <div>
       <div>
@@ -119,7 +130,6 @@ function AddTask({ currentId, setcurrentId }) {
                 Cancel
               </Button>
               <button type="submit" onClick={handleSubmit(submit)}>
-                {" "}
                 submit{" "}
               </button>
             </DialogActions>
