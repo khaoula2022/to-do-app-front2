@@ -11,7 +11,7 @@ import { useHistory } from "react-router";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 
-function SingleTask({ tasks }) {
+function SingleTask({ tasks, setCurrentId }) {
   const dispatch = useDispatch();
   const history = useHistory();
 
