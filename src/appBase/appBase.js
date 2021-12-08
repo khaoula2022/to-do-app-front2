@@ -9,6 +9,6 @@ import {
 import React, { useEffect, useState } from "react";
 import Tasks from "../Pages/Tasks";
 
-export default function appBase() {
+export default function AppBase() {
   return <></>;
 }
