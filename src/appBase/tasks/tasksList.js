@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { selectcourses } from "./taskSlice";
+import { selectTasks } from "./taskSlice";
 
 function tasksList() {
   return <div></div>;
