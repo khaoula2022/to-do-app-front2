@@ -20,13 +20,13 @@ function SingleTask({ tasks, setCurrentId }) {
     <div>
       <Card className={styles.card}>
         <CardHeader title={tasks.label}></CardHeader>
-        <CardMedia></CardMedia>
+        <CardMedia className={styles.media}></CardMedia>
         <CardContent>
           <Typography variant="body2" color="textSecondary" component="p">
             {tasks.description}
           </Typography>
         </CardContent>
-        <CardActions></CardActions>
+        <CardActions className={styles.cardActions}></CardActions>
       </Card>
     </div>
   );
