@@ -1,9 +1,12 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import * as api from "../../api/tasksApi";
 
-export const createCourseActivities = createAsyncThunk(
+export const createTask = createAsyncThunk(
   "tasks/addTask",
-  async (tasks, thunkAPI) => {}
+  async (tasks, thunkAPI) => {
+    const response = await api.CreateTask(tasks);
+    return response.data;
+  }
 );
 
 let initialState = {
@@ -19,7 +22,11 @@ export const taskSlice = createSlice({
     },
   },
 
-  extraReducers: {},
+  extraReducers: {
+    [createTask.fulfilled]: (state, action) => {
+      state.values.push(action.payload.data);
+    },
+  },
 });
 export const { gettasks } = taskSlice.actions;
 //thunk

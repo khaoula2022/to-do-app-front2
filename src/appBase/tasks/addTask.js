@@ -7,8 +7,10 @@ import {
   TextField,
 } from "@material-ui/core";
 import React from "react";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
-function addTask() {
+function AddTask() {
   return (
     <div>
       <FormControl>
@@ -25,4 +27,4 @@ function addTask() {
   );
 }
 
-export default addTask;
+export default AddTask;
