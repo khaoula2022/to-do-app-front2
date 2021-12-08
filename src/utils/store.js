@@ -1,5 +1,5 @@
 import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
-
+import taskReducer from "../appBase/tasks/taskSlice";
 export default configureStore({
   middleware: getDefaultMiddleware({
     serializableCheck: {
@@ -12,5 +12,5 @@ export default configureStore({
     },
   }),
 
-  reducer: {},
+  reducer: { tasks: taskReducer },
 });
