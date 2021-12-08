@@ -40,6 +40,7 @@ function AddTask({ currentId, setcurrentId }) {
   useEffect(() => {
     if (currentId) setOpen(true);
   }, [currentId]);
+
   const {
     register,
     handleSubmit,
@@ -57,7 +58,6 @@ function AddTask({ currentId, setcurrentId }) {
     handleError();
   };
   const clear = () => {
-    setcurrentId(null);
     setTaskData({
       label: " ",
       description: "",
@@ -106,19 +106,21 @@ function AddTask({ currentId, setcurrentId }) {
                 variant="outlined"
                 label="label"
                 fullWidth
-                {...register("titlabelle")}
+                {...register("label")}
                 value={taskData.label}
                 onChange={(e) =>
                   setTaskData({ ...taskData, label: e.target.value })
                 }
               />
+              <p>{errors.label?.message} </p>
             </DialogContent>
             <DialogActions>
               <Button onClick={handleClose} color="primary">
                 Cancel
               </Button>
-              <button type="submit" onClick={submit()}>
-                add task{" "}
+              <button type="submit" onClick={handleSubmit(submit)}>
+                {" "}
+                submit{" "}
               </button>
             </DialogActions>
           </DialogTitle>
