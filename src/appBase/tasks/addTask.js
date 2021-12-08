@@ -42,6 +42,7 @@ function AddTask({ currentId, setcurrentId }) {
   const dispatch = useDispatch();
   const [open, setOpen] = React.useState(false);
   const [openN, setOpenN] = React.useState(false);
+  const [value, setValue] = React.useState(null);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -140,6 +141,16 @@ function AddTask({ currentId, setcurrentId }) {
                 }
               />
               <p>{errors.description?.message} </p>
+              <TextField
+                id="date"
+                label="Birthday"
+                type="date"
+                defaultValue="2017-05-24"
+                sx={{ width: 220 }}
+                InputLabelProps={{
+                  shrink: true,
+                }}
+              />
             </DialogContent>
             <DialogActions>
               <Button onClick={handleClose} color="primary">
