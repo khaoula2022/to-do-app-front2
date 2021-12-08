@@ -1,4 +1,5 @@
 import {
+  Button,
   Dialog,
   DialogActions,
   DialogContent,
@@ -37,8 +38,8 @@ function AddTask({ currentId, setcurrentId }) {
     setOpen(true);
   };
   useEffect(() => {
-    if (task) setTaskData(task);
-  }, [task]);
+    if (currentId) setOpen(true);
+  }, [currentId]);
   const {
     register,
     handleSubmit,
@@ -52,13 +53,27 @@ function AddTask({ currentId, setcurrentId }) {
   };
   const handleClose = () => {
     setOpen(false);
-    // clear();
+    clear();
+    handleError();
+  };
+  const clear = () => {
+    setcurrentId(null);
+    setTaskData({
+      label: " ",
+      description: "",
+    });
   };
 
-  const submit = () => {
-    dispatch(createTask(taskData));
-  };
+  const submit = (e) => {
+    if (currentId) {
+    } else {
+      dispatch(createTask(taskData));
+    }
 
+    setOpen(false);
+    clear();
+    handleClick();
+  };
   const handleClick = () => {
     setOpenN(true);
   };
@@ -88,15 +103,20 @@ function AddTask({ currentId, setcurrentId }) {
             Create a task here
             <DialogContent>
               <TextField
-                label="Label"
+                variant="outlined"
+                label="label"
                 fullWidth
+                {...register("titlabelle")}
                 value={taskData.label}
                 onChange={(e) =>
                   setTaskData({ ...taskData, label: e.target.value })
                 }
-              ></TextField>
+              />
             </DialogContent>
             <DialogActions>
+              <Button onClick={handleClose} color="primary">
+                Cancel
+              </Button>
               <button type="submit" onClick={submit()}>
                 add task{" "}
               </button>
