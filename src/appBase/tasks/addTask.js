@@ -1,8 +1,10 @@
 import {
   Dialog,
+  DialogActions,
   DialogContent,
   DialogTitle,
   FormControl,
+  TextField,
 } from "@material-ui/core";
 import React from "react";
 
@@ -12,7 +14,10 @@ function addTask() {
       <FormControl>
         <Dialog>
           <DialogTitle>
-            <DialogContent></DialogContent>
+            <DialogContent>
+              <TextField></TextField>
+            </DialogContent>
+            <DialogActions></DialogActions>
           </DialogTitle>
         </Dialog>
       </FormControl>
