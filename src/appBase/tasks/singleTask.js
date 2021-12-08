@@ -6,14 +6,17 @@ import {
   CardActions,
   Typography,
   IconButton,
+  Button,
 } from "@material-ui/core";
 import EditIcon from "@material-ui/icons/Edit";
+import DeleteIcon from "@material-ui/icons/Delete";
 
 import React from "react";
 import { useHistory } from "react-router";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import styles from "./singleTaskStyles.module.css";
+import { deleteTask } from "./taskSlice";
 
 function SingleTask({ tasks, setCurrentId }) {
   const dispatch = useDispatch();
@@ -42,7 +45,15 @@ function SingleTask({ tasks, setCurrentId }) {
             {tasks.description}
           </Typography>
         </CardContent>
-        <CardActions className={styles.cardActions}></CardActions>
+        <CardActions className={styles.cardActions}>
+          <Button
+            size="small"
+            color="primary"
+            onClick={() => dispatch(deleteTask(tasks._id))}
+          >
+            <DeleteIcon fontSize="small" /> Delete this Task
+          </Button>
+        </CardActions>
       </Card>
     </div>
   );
