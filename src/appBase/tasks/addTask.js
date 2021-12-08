@@ -7,17 +7,40 @@ import {
   TextField,
 } from "@material-ui/core";
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-function AddTask() {
+function AddTask({ currentId, setcurrentId }) {
+  const task = useSelector((state) =>
+    currentId ? state.tasks.values.find((t) => t._id === currentId) : null
+  );
   const dispatch = useDispatch();
   const [open, setOpen] = React.useState(false);
-  const [taskData, settaskData] = useState({
+  const [taskData, setTaskData] = useState({
     label: "",
     description: "",
     deadline: "",
   });
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+  useEffect(() => {
+    if (task) setTaskData(task);
+  }, [task]);
+
+  const clear = () => {
+    setcurrentId(null);
+    setTaskData({
+      label: " ",
+      description: "",
+      deadline: "",
+    });
+  };
+  const handleClose = () => {
+    setOpen(false);
+    clear();
+  };
+
   return (
     <div>
       <div>
@@ -26,7 +49,12 @@ function AddTask() {
         </div>
       </div>
       <FormControl>
-        <Dialog>
+        <Dialog
+          fullWidth={true}
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="form-dialog-title"
+        >
           <DialogTitle>
             <DialogContent>
               <TextField></TextField>
