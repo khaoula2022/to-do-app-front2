@@ -49,9 +49,18 @@ function SingleTask({ tasks, setCurrentId }) {
           <Button
             size="small"
             color="primary"
-            onClick={() => dispatch(deleteTask(tasks._id))}
+            onClick={() => {
+              setConfirmDialog({
+                isOpen: true,
+                title: "Are you sure to delete this task?",
+                subTitle: "You can't undo this operation",
+                onConfirm: () => {
+                  dispatch(deleteTask(tasks._id));
+                },
+              });
+            }}
           >
-            <DeleteIcon fontSize="small" /> Delete this Task
+            <DeleteIcon fontSize="small" /> Leave
           </Button>
         </CardActions>
       </Card>
