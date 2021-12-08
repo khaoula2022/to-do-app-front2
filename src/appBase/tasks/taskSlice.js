@@ -20,7 +20,9 @@ export const taskSlice = createSlice({
     gettasks: (state, action) => {
       state.values = action.payload;
     },
-    updateTask: (state, action) => {
+
+
+    UpdateTask: (state, action) => {
       const payload = action.payload._id;
       state.values = state.values.map((task) =>
         task._id === payload ? action.payload : task
@@ -35,8 +37,17 @@ export const taskSlice = createSlice({
     },
   },
 });
-export const { gettasks } = taskSlice.actions;
+export const { gettasks, UpdateTask } = taskSlice.actions;
 //thunk
+export const update = (id, task) => async (dispatch) => {
+  try {
+    const { data } = await api.UpdateTaskApi(id, task);
+    dispatch(UpdateTask(data.data));
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
 export const GetTasks = () => async (dispatch) => {
   try {
     const { data } = await api.fetchTasks();
@@ -46,6 +57,7 @@ export const GetTasks = () => async (dispatch) => {
     console.log(error.message);
   }
 };
+
 export const selectTasks = (state) => state.tasks.values;
 
 export default taskSlice.reducer;

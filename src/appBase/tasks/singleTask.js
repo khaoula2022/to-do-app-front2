@@ -15,6 +15,11 @@ import styles from "./singleTaskStyles.module.css";
 function SingleTask({ tasks, setCurrentId }) {
   const dispatch = useDispatch();
   const history = useHistory();
+  const [confirmDialog, setConfirmDialog] = useState({
+    isOpen: false,
+    title: "",
+    subTitle: "",
+  });
 
   return (
     <div>

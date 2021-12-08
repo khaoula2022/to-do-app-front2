@@ -10,7 +10,7 @@ import {
 import React from "react";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { createTask } from "./taskSlice";
+import { createTask, update } from "./taskSlice";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -72,13 +72,16 @@ function AddTask({ currentId, setcurrentId }) {
   }, [currentId]);
 
   const submit = (e) => {
-    dispatch(createTask(taskData));
+    if (currentId) {
+      dispatch(update(currentId, taskData));
+    } else {
+      dispatch(createTask(taskData));
+    }
 
     setOpen(false);
     clear();
     handleClick();
   };
-
   const handleClick = () => {
     setOpenN(true);
   };
