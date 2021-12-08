@@ -60,7 +60,14 @@ function AddTask({ currentId, setcurrentId }) {
     <div>
       <div>
         <div>
-          <button> Create a new Task !</button>
+          <button
+            variant="outlined"
+            color="secondary"
+            onClick={handleClickOpen}
+          >
+            {" "}
+            Create a new Task !
+          </button>
         </div>
       </div>
       <FormControl>
