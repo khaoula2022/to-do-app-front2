@@ -13,6 +13,7 @@ import {
 } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import SignUp from "./pages/SignUp";
+import SignIn from "./pages/SignIn";
 
 function App() {
   // const user = useSelector((state) => state.user.user);
@@ -28,6 +29,9 @@ function App() {
           </Route>
           <Route exact path="/signup">
             <SignUp />
+          </Route>
+          <Route exact path="/signin">
+            <SignIn />
           </Route>
         </Switch>
         <Switch>
