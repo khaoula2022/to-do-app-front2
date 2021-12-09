@@ -19,11 +19,15 @@ import { yupResolver } from "@hookform/resolvers/yup";
 
 const schema = yup.object().shape({
   username: yup.string().required("please provide a username"),
-  email: yup.string().required(" please provide a valid email ").email('Must be a valid email'),
+  email: yup
+    .string()
+    .required(" please provide a valid email ")
+    .email("Must be a valid email"),
   password: yup.string().required(" please provide a password "),
-  confirmpassword: yup.string().required(" please confirm your password ")
-  .oneOf([yup.ref("password"), null], "Passwords must match"),
-
+  confirmpassword: yup
+    .string()
+    .required(" please confirm your password ")
+    .oneOf([yup.ref("password"), null], "Passwords must match"),
 });
 
 function SignUp() {
@@ -31,7 +35,6 @@ function SignUp() {
   const [password, setpassword] = useState("");
   const [confirmpassword, setconfirmpassword] = useState("");
   const [username, setusername] = useState("");
-  const [avatar, setavatar] = useState("");
   const dispatch = useDispatch();
   const history = useHistory();
   const [values, setValues] = React.useState({
@@ -60,7 +63,6 @@ function SignUp() {
 
   const handleRegister = (e) => {
     //  e.preventDefault();
-    console.log(avatar);
 
     dispatch(registerUser(username, email, password, confirmpassword))
       .then(() => {
