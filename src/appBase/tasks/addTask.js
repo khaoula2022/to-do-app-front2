@@ -147,7 +147,7 @@ function AddTask({ currentId, setcurrentId }) {
                 {...register("deadline")}
                 label="Deadline"
                 type="date"
-                format="dd/MM/yyyy"
+                inputFormat="MM/dd/yyyy"
                 defaultValue="01-01-2022"
                 sx={{ width: 220 }}
                 value={taskData.deadline}
