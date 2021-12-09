@@ -8,7 +8,7 @@ function SearchTask({ setTitle, title }) {
     <div className={styles.header__search}>
       <FindInPageIcon></FindInPageIcon>
       <input
-        placeholder="Type your keyword here "
+        placeholder="Search for  a task "
         type="text"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
