@@ -7,7 +7,10 @@ import useStyles from "./tasksListStyles";
 
 function TasksList({ setcurrentId }) {
   const tasks = useSelector(selectTasks);
- 
+  //const user = JSON.parse(localStorage.getItem("user"));
+  // console.log(user.username);
+  const user = useSelector((state) => state.user);
+
   const classes = useStyles;
   return (
     <>

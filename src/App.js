@@ -13,7 +13,7 @@ import {
 } from "react-router-dom";
 
 function App() {
-  const user = useSelector((state) => state.user);
+  const user = useSelector((state) => state.user.user);
   console.log(user);
 
   const AppBase = React.lazy(() => import("../src/appBase/AppBase"));
