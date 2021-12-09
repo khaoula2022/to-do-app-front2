@@ -11,7 +11,7 @@ import {
 
 import AuthService from "../services/auth.service";
 
-export const register =
+export const registerUser =
   (username, email, password, confirmpassword, avatar) => (dispatch) => {
     return AuthService.register(
       username,

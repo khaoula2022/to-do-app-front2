@@ -12,7 +12,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import styles from "./signup.module.css";
-import { register } from "./../appBase/user/actions/auth";
+import { registerUser } from "./../appBase/user/actions/auth";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -60,10 +60,10 @@ function SignUp() {
   };
 
   const handleRegister = (e) => {
-    e.preventDefault();
+    //  e.preventDefault();
     console.log(avatar);
 
-    dispatch(register(username, email, password, confirmpassword))
+    dispatch(registerUser(username, email, password, confirmpassword))
       .then(() => {
         //  console.log(username);
         //  console.log(email);
