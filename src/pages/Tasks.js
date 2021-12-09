@@ -23,6 +23,8 @@ function Tasks() {
   useEffect(() => {
     dispatch(GetTasks());
   }, [dispatch]);
+  const user = JSON.parse(localStorage.getItem("user"));
+  console.log(user.username);
   return (
     <div className={styles.fluid}>
       <button
@@ -33,6 +35,7 @@ function Tasks() {
         {" "}
         Logout
       </button>
+      <p> welcome {user.username} </p>
       <AddTask currentId={currentId} setcurrentId={setcurrentId}></AddTask>
       <div className={styles.Tasks}>
         {" "}

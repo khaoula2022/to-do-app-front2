@@ -7,20 +7,23 @@ import useStyles from "./tasksListStyles";
 
 function TasksList({ setcurrentId }) {
   const tasks = useSelector(selectTasks);
+ 
   const classes = useStyles;
   return (
-    <Grid
-      className={classes.container}
-      container
-      alignItems="stretch"
-      spacing={3}
-    >
-      {tasks.map((task) => (
-        <Grid key={task?._id} item xs={12} sm={6} md={2}>
-          <SingleTask tasks={task} setCurrentId={setcurrentId} />
-        </Grid>
-      ))}
-    </Grid>
+    <>
+      <Grid
+        className={classes.container}
+        container
+        alignItems="stretch"
+        spacing={3}
+      >
+        {tasks.map((task) => (
+          <Grid key={task?._id} item xs={12} sm={6} md={2}>
+            <SingleTask tasks={task} setCurrentId={setcurrentId} />
+          </Grid>
+        ))}
+      </Grid>
+    </>
   );
 }
 
