@@ -72,7 +72,7 @@ function SignIn() {
 
     dispatch(login(email, password))
       .then(() => {
-        history.push("/app/courses");
+        history.push("/app/tasks");
       })
       .catch(() => {
         console.log(setlogsucc(false));

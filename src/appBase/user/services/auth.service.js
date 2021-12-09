@@ -37,7 +37,13 @@ const login = (email, password) => {
     });
 };
 
+const logout = () => {
+  localStorage.removeItem("user");
+  console.log(" loggin out");
+};
+
 export default {
   register,
   login,
+  logout,
 };
