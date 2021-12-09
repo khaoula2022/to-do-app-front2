@@ -25,14 +25,14 @@ function Tasks() {
   }, [dispatch]);
   return (
     <div className={styles.fluid}>
-      <Button
+      <button
         onClick={() => {
           doLogout();
         }}
       >
         {" "}
         Logout
-      </Button>
+      </button>
       <AddTask currentId={currentId} setcurrentId={setcurrentId}></AddTask>
       <div className={styles.Tasks}>
         {" "}
