@@ -19,7 +19,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 
 const schema = yup.object().shape({
   username: yup.string().required("please provide a username"),
-  email: yup.string().required(" please provide a valid email "),
+  email: yup.string().required(" please provide a valid email ").email('Must be a valid email'),
   password: yup.string().required(" please provide a password "),
   confirmpassword: yup.string().required(" please confirm your password ")
   .oneOf([yup.ref("password"), null], "Passwords must match"),
