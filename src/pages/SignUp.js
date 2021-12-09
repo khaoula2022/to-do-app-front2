@@ -21,7 +21,10 @@ const schema = yup.object().shape({
   username: yup.string().required("please provide a username"),
   email: yup.string().required(" please provide a valid email "),
   password: yup.string().required(" please provide a password "),
-  confirmPassword: yup.string().required(" please confirm your password "),
+  confirmpassword: yup.string().required(" please confirm your password "),
+  /*passwordConfirmation: yup
+    .string()
+    .oneOf([yup.ref("password"), null], "Passwords must match"),*/
 });
 
 function SignUp() {
@@ -78,30 +81,30 @@ function SignUp() {
         <FormControl>
           <Input
             value={username}
+            {...register("username")}
             onChange={(e) => setusername(e.target.value)}
             label="Username"
             placeholder="username"
             type="text"
-            {...register("username")}
           />
           <p>{errors.username?.message} </p>
           <Input
             value={email}
+            {...register("email")}
             onChange={(e) => setemail(e.target.value)}
             label="Email"
             placeholder="email"
             type="email"
-            {...register("email")}
           />
           <p>{errors.email?.message} </p>
 
           <Input
             value={password}
             label="passwrd"
+            {...register("password")}
             onChange={(e) => setpassword(e.target.value)}
             id="standard-adornment-password"
             type={values.showPassword ? "text" : "password"}
-            {...register("password")}
             endAdornment={
               <InputAdornment position="end">
                 <IconButton
@@ -119,6 +122,7 @@ function SignUp() {
           <Input
             value={confirmpassword}
             label="confirm password"
+            {...register("confirmpassword")}
             onChange={(e) => setconfirmpassword(e.target.value)}
             id="standard-adornment-password"
             type={values.showPassword ? "text" : "password"}
@@ -134,7 +138,7 @@ function SignUp() {
               </InputAdornment>
             }
           />
-          <p>{errors.confirmPassword?.message} </p>
+          <p>{errors.confirmpassword?.message} </p>
         </FormControl>
         <Button
           variant="outlined"
