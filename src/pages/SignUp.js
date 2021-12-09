@@ -69,12 +69,18 @@ function SignUp() {
         //  console.log(username);
         //  console.log(email);
         // console.log(password);
-        history.push("/app/tasks");
+        history.push("/signin");
         window.location.reload(false);
       })
       .catch(() => {});
   };
 
+  const redirectSignInPage = (e) => {
+    //  e.preventDefault();
+
+    history.push("/signin");
+    window.location.reload(false);
+  };
   return (
     <div className={styles.page}>
       <div className={styles.signUp}>
@@ -150,6 +156,15 @@ function SignUp() {
           onClick={handleSubmit(handleRegister)}
         >
           Sign Up
+        </Button>{" "}
+        <Button
+          variant="outlined"
+          size="small"
+          color="primary"
+          type="submit"
+          onClick={redirectSignInPage}
+        >
+          Already have an account ? Sign In here
         </Button>{" "}
       </div>
     </div>
