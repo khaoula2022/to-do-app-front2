@@ -33,6 +33,9 @@ export const taskSlice = createSlice({
 
       state.values = state.values.filter((task) => task._id !== payload);
     },
+    searchAction: (state, action) => {
+      state.values = action.payload;
+    },
   },
 
   extraReducers: {
@@ -41,7 +44,8 @@ export const taskSlice = createSlice({
     },
   },
 });
-export const { gettasks, UpdateTask, deleteTaskReducer } = taskSlice.actions;
+export const { gettasks, UpdateTask, deleteTaskReducer, searchAction } =
+  taskSlice.actions;
 //thunk
 export const update = (id, task) => async (dispatch) => {
   try {
@@ -67,6 +71,15 @@ export const deleteTask = (id) => async (dispatch) => {
     await api.deleteTaskApi(id);
     dispatch(deleteTaskReducer(id));
   } catch {}
+};
+export const searchTask = (search) => async (dispatch) => {
+  try {
+    const { data } = await api.searchTaskByCode(search);
+
+    dispatch(searchAction(data));
+  } catch (error) {
+    console.log(error.message);
+  }
 };
 
 export const selectTasks = (state) => state.tasks.values;

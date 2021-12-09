@@ -12,6 +12,7 @@ import { logout } from "./../appBase/user/actions/auth";
 function Tasks() {
   const [currentId, setcurrentId] = useState(null);
   const dispatch = useDispatch();
+  var [code, setcode] = useState("");
 
   const history = useHistory();
   const doLogout = (e) => {
@@ -21,6 +22,7 @@ function Tasks() {
   };
 
   useEffect(() => {
+    
     dispatch(GetTasks());
   }, [dispatch]);
 
