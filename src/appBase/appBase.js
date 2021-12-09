@@ -28,6 +28,7 @@ import AppBar from "@material-ui/core/AppBar";
 import React, { useEffect, useState } from "react";
 import Tasks from "./../pages/Tasks";
 import HomePage from "./../pages/HomePage";
+import SignUp from "./../pages/SignUp";
 const drawerWidth = 200;
 
 const useStyles = makeStyles((theme) => ({
@@ -79,6 +80,9 @@ export default function AppBase() {
             </Route>
             <Route exact path="/app/home">
               <HomePage></HomePage>
+            </Route>
+            <Route exact path="/signup">
+              <SignUp></SignUp>
             </Route>
           </Switch>
         </Toolbar>
