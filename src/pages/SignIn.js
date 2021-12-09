@@ -86,7 +86,12 @@ function SignIn() {
                 }
               />
             </FormControl>
-            <Button variant="outlined" size="small" color="primary">
+            <Button
+              variant="outlined"
+              size="small"
+              color="primary"
+              onClick={signIn}
+            >
               Login{" "}
             </Button>{" "}
           </form>
