@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
+import styles from "./signup.module.css";
 
 function SignUp() {
   const [email, setemail] = useState("");
@@ -12,7 +13,14 @@ function SignUp() {
   const [avatar, setavatar] = useState("");
   const dispatch = useDispatch();
   const history = useHistory();
-  return <div></div>;
+
+  return (
+    <div className={styles.page}>
+      <div className={styles.signUp}>
+          
+      </div>
+    </div>
+  );
 }
 
 export default SignUp;
