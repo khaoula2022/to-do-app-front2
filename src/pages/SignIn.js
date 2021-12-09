@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { useHistory } from "react-router";
-import styles from "./SignUp.module.css";
+import styles from "./signup.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import {
   Button,
