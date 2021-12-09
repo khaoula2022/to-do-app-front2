@@ -24,6 +24,20 @@ const register = (
     });
 };
 
+const login = (email, password) => {
+  return axios
+    .post("http://localhost:4000/user/login", {
+      email,
+      password,
+    })
+    .then((response) => {
+      console.log("local storage");
+      localStorage.setItem("user", JSON.stringify(response.data));
+      return response.data;
+    });
+};
+
 export default {
   register,
+  login,
 };
