@@ -1,10 +1,9 @@
 import React, { useState } from "react";
-import TextField from "@material-ui/core/TextField";
-import Autocomplete from "@material-ui/lab/Autocomplete";
+
 import FindInPageIcon from "@material-ui/icons/FindInPage";
 import styles from "./SearchBar.module.css";
 
-function SearchPage({ setTitle, title }) {
+function SearchTask({ setTitle, title }) {
   return (
     <div className={styles.header__search}>
       <FindInPageIcon></FindInPageIcon>
@@ -20,3 +19,5 @@ function SearchPage({ setTitle, title }) {
     </div>
   );
 }
+
+export default SearchTask;

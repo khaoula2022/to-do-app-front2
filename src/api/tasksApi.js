@@ -1,7 +1,7 @@
 import { Axios } from "../appBase/axiosfile";
 
 const url = "/tasks";
-const url1 = "/tasks";
+const url1 = "/tasks/search";
 
 export const fetchTasks = () => Axios().get(url);
 export const CreateTask = (newTask) => Axios().post(url, newTask);

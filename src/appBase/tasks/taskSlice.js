@@ -72,7 +72,7 @@ export const deleteTask = (id) => async (dispatch) => {
     dispatch(deleteTaskReducer(id));
   } catch {}
 };
-export const searchTask = (search) => async (dispatch) => {
+export const searchTaskF = (search) => async (dispatch) => {
   try {
     const { data } = await api.searchTaskByCode(search);
 
