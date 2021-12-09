@@ -39,10 +39,10 @@ function SignIn() {
   };
 
   const signIn = (e) => {
-    authService.signInWithEmailAndPassword(email, password);
+    authService.login(email, password);
     dispatch(login(email, password))
       .then(() => {
-        history.push("/app/courses");
+        history.push("/app/tasks");
       })
       .catch(() => {});
   };
