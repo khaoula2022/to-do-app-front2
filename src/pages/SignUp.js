@@ -4,7 +4,6 @@ import {
   IconButton,
   Input,
   InputAdornment,
-  InputLabel,
   TextField,
 } from "@material-ui/core";
 import { Visibility, VisibilityOff } from "@material-ui/icons";
@@ -14,13 +13,22 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import styles from "./signup.module.css";
 import { register } from "./../appBase/user/actions/auth";
+import * as yup from "yup";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+
+const schema = yup.object().shape({
+  username: yup.string().required("please provide a username"),
+  email: yup.string().required(" please provide a valid email "),
+  password: yup.string().required(" please provide a password "),
+  confirmPassword: yup.string().required(" please confirm your password "),
+});
 
 function SignUp() {
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
   const [confirmpassword, setconfirmpassword] = useState("");
   const [username, setusername] = useState("");
-  const [birthdate, setbirthdate] = useState(new Date());
   const [avatar, setavatar] = useState("");
   const dispatch = useDispatch();
   const history = useHistory();
@@ -30,6 +38,14 @@ function SignUp() {
     weight: "",
     weightRange: "",
     showPassword: false,
+  });
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
   });
 
   const handleClickShowPassword = () => {
@@ -46,14 +62,15 @@ function SignUp() {
 
     dispatch(register(username, email, password, confirmpassword))
       .then(() => {
-        console.log(username);
-        console.log(email);
-        console.log(password);
+        //  console.log(username);
+        //  console.log(email);
+        // console.log(password);
         history.push("/app/tasks");
         window.location.reload(false);
       })
       .catch(() => {});
   };
+
   return (
     <div className={styles.page}>
       <div className={styles.signUp}>
@@ -65,20 +82,26 @@ function SignUp() {
             label="Username"
             placeholder="username"
             type="text"
+            {...register("username")}
           />
+          <p>{errors.username?.message} </p>
           <Input
             value={email}
             onChange={(e) => setemail(e.target.value)}
             label="Email"
             placeholder="email"
             type="email"
+            {...register("email")}
           />
+          <p>{errors.email?.message} </p>
+
           <Input
             value={password}
             label="passwrd"
             onChange={(e) => setpassword(e.target.value)}
             id="standard-adornment-password"
             type={values.showPassword ? "text" : "password"}
+            {...register("password")}
             endAdornment={
               <InputAdornment position="end">
                 <IconButton
@@ -91,8 +114,11 @@ function SignUp() {
               </InputAdornment>
             }
           />
+          <p>{errors.password?.message} </p>
+
           <Input
             value={confirmpassword}
+            label="confirm password"
             onChange={(e) => setconfirmpassword(e.target.value)}
             id="standard-adornment-password"
             type={values.showPassword ? "text" : "password"}
@@ -108,12 +134,14 @@ function SignUp() {
               </InputAdornment>
             }
           />
+          <p>{errors.confirmPassword?.message} </p>
         </FormControl>
         <Button
           variant="outlined"
           size="small"
           color="primary"
-          onClick={handleRegister}
+          type="submit"
+          onClick={handleSubmit(handleRegister)}
         >
           Sign Up
         </Button>{" "}
