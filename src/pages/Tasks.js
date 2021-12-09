@@ -9,6 +9,7 @@ import AddTask from "./../appBase/tasks/AddTask";
 import { Button } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
 import { logout } from "./../appBase/user/actions/auth";
+import { searchTask } from "./../appBase/tasks/taskSlice";
 function Tasks() {
   const [currentId, setcurrentId] = useState(null);
   const dispatch = useDispatch();
@@ -22,9 +23,12 @@ function Tasks() {
   };
 
   useEffect(() => {
-    
-    dispatch(GetTasks());
-  }, [dispatch]);
+    if (code !== "") {
+      dispatch(searchTask);
+    } else {
+      dispatch(GetTasks());
+    }
+  }, [code, dispatch]);
 
   return (
     <>
