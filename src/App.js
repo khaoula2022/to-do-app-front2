@@ -13,10 +13,8 @@ import {
 } from "react-router-dom";
 
 function App() {
-  //const user = useSelector((state) => state.user);
-  //console.log(user);
-  const user = JSON.parse(localStorage.getItem("user"));
-  console.log(user.username);
+  const user = useSelector((state) => state.user);
+  console.log(user);
 
   const AppBase = React.lazy(() => import("../src/appBase/AppBase"));
   const SignUp = React.lazy(() => import("./pages/SignUp"));
@@ -26,26 +24,28 @@ function App() {
   return (
     <Suspense fallback={<Loader></Loader>}>
       <Router>
-        <Switch>
-          <Route exact path="/">
-            <HomePage />
-          </Route>
-          <Route exact path="/signup">
-            <SignUp />
-          </Route>
-          <Route exact path="/signin">
-            <SignIn />
-          </Route>
-        </Switch>
-
-        <Switch>
-          <Route exact path="/">
-            <HomePage />
-          </Route>
-          <Route path="/app">
-            <AppBase />
-          </Route>
-        </Switch>
+        {!user ? (
+          <Switch>
+            <Route exact path="/">
+              <HomePage />
+            </Route>
+            <Route exact path="/signup">
+              <SignUp />
+            </Route>
+            <Route exact path="/signin">
+              <SignIn />
+            </Route>
+          </Switch>
+        ) : (
+          <Switch>
+            <Route exact path="/">
+              <HomePage />
+            </Route>
+            <Route path="/app">
+              <AppBase />
+            </Route>
+          </Switch>
+        )}
       </Router>
     </Suspense>
   );
