@@ -25,21 +25,21 @@ function Tasks() {
   }, [dispatch]);
 
   return (
-    <div className={styles.fluid}>
-      <button
-        onClick={() => {
-          doLogout();
-        }}
-      >
-        {" "}
-        Logout
-      </button>
-      <AddTask currentId={currentId} setcurrentId={setcurrentId}></AddTask>
-      <div className={styles.Tasks}>
-        {" "}
+    <>
+      <div className={styles.fluid}>
+        <button
+          onClick={() => {
+            doLogout();
+          }}
+        >
+          {" "}
+          Logout
+        </button>
+        <AddTask currentId={currentId} setcurrentId={setcurrentId}></AddTask>
+        <div className={styles.Tasks}> </div>
         <TasksList setcurrentId={setcurrentId} />{" "}
       </div>
-    </div>
+    </>
   );
 }
 
