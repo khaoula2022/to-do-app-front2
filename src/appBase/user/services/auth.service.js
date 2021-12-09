@@ -33,6 +33,8 @@ const login = (email, password) => {
     .then((response) => {
       console.log("local storage");
       localStorage.setItem("user", JSON.stringify(response.data));
+      console.log(response.data);
+
       return response.data;
     });
 };
