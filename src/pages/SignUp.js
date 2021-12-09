@@ -21,10 +21,9 @@ const schema = yup.object().shape({
   username: yup.string().required("please provide a username"),
   email: yup.string().required(" please provide a valid email "),
   password: yup.string().required(" please provide a password "),
-  confirmpassword: yup.string().required(" please confirm your password "),
-  /*passwordConfirmation: yup
-    .string()
-    .oneOf([yup.ref("password"), null], "Passwords must match"),*/
+  confirmpassword: yup.string().required(" please confirm your password ")
+  .oneOf([yup.ref("password"), null], "Passwords must match"),
+
 });
 
 function SignUp() {
@@ -139,6 +138,7 @@ function SignUp() {
             }
           />
           <p>{errors.confirmpassword?.message} </p>
+          <p>{errors.passwordConfirmation?.message} </p>
         </FormControl>
         <Button
           variant="outlined"
