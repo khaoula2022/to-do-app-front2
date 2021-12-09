@@ -12,13 +12,12 @@ import {
 import AuthService from "../services/auth.service";
 
 export const registerUser =
-  (username, email, password, confirmpassword, avatar) => (dispatch) => {
+  (username, email, password, confirmpassword) => (dispatch) => {
     return AuthService.register(
       username,
       email,
       password,
-      confirmpassword,
-      avatar
+      confirmpassword
     ).then(
       (response) => {
         dispatch({
