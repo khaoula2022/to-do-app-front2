@@ -25,7 +25,7 @@ function AddTask({ currentId, setcurrentId }) {
   const task = useSelector((state) =>
     currentId ? state.tasks.values.find((t) => t._id === currentId) : null
   );
-  console.log("test");
+  // console.log("test");
   const {
     register,
     handleSubmit,
@@ -89,12 +89,6 @@ function AddTask({ currentId, setcurrentId }) {
     setOpenN(true);
   };
 
-  const handleCloseNotif = (event, reason) => {
-    if (reason === "clickaway") {
-      return;
-    }
-    setOpenN(false);
-  };
   return (
     <div>
       <div>

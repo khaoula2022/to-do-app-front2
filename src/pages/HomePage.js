@@ -45,6 +45,7 @@ function HomePage() {
           <></>
         </div>
       </div>
+      <p> welcome</p>
     </div>
   );
 }
