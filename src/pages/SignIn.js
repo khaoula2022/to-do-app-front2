@@ -89,7 +89,7 @@ function SignIn() {
 
               <Input
                 value={password}
-                {...register("pasword")}
+                {...register("password")}
                 onChange={(e) => setpassword(e.target.value)}
                 id="standard-adornment-password"
                 type={values.showPassword ? "text" : "password"}
