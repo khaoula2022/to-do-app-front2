@@ -7,20 +7,27 @@ import useStyles from "./tasksListStyles";
 
 function TasksList({ setcurrentId }) {
   const tasks = useSelector(selectTasks);
+  const user = JSON.parse(localStorage.getItem("user"));
+  console.log(user.username);
+  //const user = useSelector((state) => state.user);
+
   const classes = useStyles;
   return (
-    <Grid
-      className={classes.container}
-      container
-      alignItems="stretch"
-      spacing={3}
-    >
-      {tasks.map((task) => (
-        <Grid key={task?._id} item xs={12} sm={6} md={2}>
-          <SingleTask tasks={task} setCurrentId={setcurrentId} />
-        </Grid>
-      ))}
-    </Grid>
+    <>
+      <p> welcome {user.username} !</p>
+      <Grid
+        className={classes.container}
+        container
+        alignItems="stretch"
+        spacing={3}
+      >
+        {tasks.map((task) => (
+          <Grid key={task?._id} item xs={12} sm={6} md={2}>
+            <SingleTask tasks={task} setCurrentId={setcurrentId} />
+          </Grid>
+        ))}
+      </Grid>
+    </>
   );
 }
 

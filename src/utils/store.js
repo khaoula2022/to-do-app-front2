@@ -1,5 +1,7 @@
 import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
 import taskReducer from "../appBase/tasks/taskSlice";
+import auth from "../appBase/user/reducers/auth";
+
 export default configureStore({
   middleware: getDefaultMiddleware({
     serializableCheck: {
@@ -12,5 +14,5 @@ export default configureStore({
     },
   }),
 
-  reducer: { tasks: taskReducer },
+  reducer: { tasks: taskReducer, user: auth },
 });

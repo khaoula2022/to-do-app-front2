@@ -11,37 +11,41 @@ import {
   Route,
   Redirect,
 } from "react-router-dom";
-import HomePage from "./pages/HomePage";
-import SignUp from "./pages/SignUp";
-import SignIn from "./pages/SignIn";
 
 function App() {
-  // const user = useSelector((state) => state.user.user);
+  const user = useSelector((state) => state.user.user);
+  console.log(user);
 
   const AppBase = React.lazy(() => import("../src/appBase/AppBase"));
+  const SignUp = React.lazy(() => import("./pages/SignUp"));
+  const SignIn = React.lazy(() => import("./pages/SignIn"));
+  const HomePage = React.lazy(() => import("./pages/HomePage"));
 
   return (
     <Suspense fallback={<Loader></Loader>}>
       <Router>
-        <Switch>
-          <Route exact path="/">
-            <HomePage />
-          </Route>
-          <Route exact path="/signup">
-            <SignUp />
-          </Route>
-          <Route exact path="/signin">
-            <SignIn />
-          </Route>
-        </Switch>
-        <Switch>
-          <Route exact path="/">
-            <HomePage />
-          </Route>
-          <Route path="/app">
-            <AppBase />
-          </Route>
-        </Switch>
+        {!user ? (
+          <Switch>
+            <Route exact path="/">
+              <HomePage />
+            </Route>
+            <Route exact path="/signup">
+              <SignUp />
+            </Route>
+            <Route exact path="/signin">
+              <SignIn />
+            </Route>
+          </Switch>
+        ) : (
+          <Switch>
+            <Route exact path="/">
+              <HomePage />
+            </Route>
+            <Route path="/app">
+              <AppBase />
+            </Route>
+          </Switch>
+        )}
       </Router>
     </Suspense>
   );

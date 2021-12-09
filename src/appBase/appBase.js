@@ -9,6 +9,7 @@ import {
 import { red } from "@material-ui/core/colors";
 import {
   Avatar,
+  Button,
   ClickAwayListener,
   Grow,
   IconButton,
@@ -24,11 +25,14 @@ import {
 
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
+import { useSelector, useDispatch } from "react-redux";
 
 import React, { useEffect, useState } from "react";
 import Tasks from "./../pages/Tasks";
 import HomePage from "./../pages/HomePage";
 import SignUp from "./../pages/SignUp";
+import { logout } from "./user/actions/auth.js";
+
 const drawerWidth = 200;
 
 const useStyles = makeStyles((theme) => ({
@@ -63,8 +67,12 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function AppBase() {
+  const location = useLocation();
   const classes = useStyles();
+  const history = useHistory();
+  const dispatch = useDispatch();
 
+ 
   return (
     <>
       <AppBar position="fixed">
@@ -84,6 +92,7 @@ export default function AppBase() {
             <Route exact path="/signup">
               <SignUp></SignUp>
             </Route>
+           
           </Switch>
         </Toolbar>
       </AppBar>
