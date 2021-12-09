@@ -23,3 +23,7 @@ const register = (
       return response.data;
     });
 };
+
+export default {
+  register,
+};
