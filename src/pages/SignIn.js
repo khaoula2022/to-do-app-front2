@@ -1,5 +1,7 @@
 import React from "react";
 import { useState } from "react";
+import { Alert } from "@material-ui/lab";
+
 import { useHistory } from "react-router";
 import styles from "./signup.module.css";
 import { useDispatch, useSelector } from "react-redux";
@@ -14,6 +16,7 @@ import {
   Input,
   InputAdornment,
   InputLabel,
+  Snackbar,
   TextField,
 } from "@material-ui/core";
 import { Visibility, VisibilityOff } from "@material-ui/icons";
@@ -29,6 +32,8 @@ const schema = yup.object().shape({
 function SignIn() {
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
+  const [logsucc, setlogsucc] = useState(true);
+
   const dispatch = useDispatch();
   const history = useHistory();
   const [values, setValues] = React.useState({
@@ -38,7 +43,21 @@ function SignIn() {
     weightRange: "",
     showPassword: false,
   });
-
+  const erroralert = (e) => {
+    if (logsucc) {
+      console.log(logsucc);
+      return <div></div>;
+    } else
+      return (
+        <div>
+          <Snackbar>
+            <Alert variant="outlined" severity="error">
+              Email or password wrong!
+            </Alert>
+          </Snackbar>
+        </div>
+      );
+  };
   const handleClickShowPassword = () => {
     setValues({ ...values, showPassword: !values.showPassword });
   };
@@ -48,12 +67,16 @@ function SignIn() {
   };
 
   const signIn = (e) => {
-    authService.login(email, password);
+    // e.preventDefault();
+    console.log(setlogsucc(true));
+
     dispatch(login(email, password))
       .then(() => {
-        history.push("/app/tasks");
+        history.push("/app/courses");
       })
-      .catch(() => {});
+      .catch(() => {
+        console.log(setlogsucc(false));
+      });
   };
 
   const {
@@ -71,7 +94,7 @@ function SignIn() {
           <h2 className={styles.title}> Sign in </h2>
 
           <Divider variant="middle" className={styles.divider} />
-
+          {erroralert()}
           <form className={styles.form}>
             <TextField
               value={email}

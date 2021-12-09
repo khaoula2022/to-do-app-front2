@@ -37,7 +37,7 @@ function HomePage() {
             or
             <button
               className={styles.signinButton}
-              onClick={() => history.push("/login")}
+              onClick={() => history.push("/signin")}
             >
               Sign in
             </button>
