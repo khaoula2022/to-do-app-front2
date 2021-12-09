@@ -34,7 +34,7 @@ function SingleTask({ tasks, setCurrentId }) {
         <CardHeader
           style={{ backgroundColor: "yellow" }}
           title={tasks.label}
-          subheader={tasks.createdAt}
+          subheader={"Deadline :" + tasks.deadline}
           action={
             <IconButton aria-label="settings">
               <EditIcon onClick={() => setCurrentId(tasks._id)} />
