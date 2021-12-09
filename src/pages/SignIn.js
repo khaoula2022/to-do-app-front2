@@ -14,6 +14,8 @@ import {
   TextField,
 } from "@material-ui/core";
 import { Visibility, VisibilityOff } from "@material-ui/icons";
+import authService from "../appBase/user/services/auth.service";
+import { login } from "../appBase/user/actions/auth";
 
 function SignIn() {
   const [email, setemail] = useState("");
@@ -35,6 +37,16 @@ function SignIn() {
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
+
+  const signIn = (e) => {
+    authService.signInWithEmailAndPassword(email, password);
+    dispatch(login(email, password))
+      .then(() => {
+        history.push("/app/courses");
+      })
+      .catch(() => {});
+  };
+
   return (
     <div>
       <div className={styles.page}>
