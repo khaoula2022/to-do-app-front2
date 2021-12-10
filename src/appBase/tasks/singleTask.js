@@ -33,7 +33,7 @@ function SingleTask({ tasks, setCurrentId }) {
       <Card className={styles.card}>
         <CardHeader
           style={{ backgroundColor: "yellow" }}
-          title={tasks.description}
+          title={tasks.label}
           subheader={"Deadline :" + tasks.deadline}
           action={
             <IconButton aria-label="settings">

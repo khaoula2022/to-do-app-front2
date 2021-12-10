@@ -22,7 +22,7 @@ const schema = yup.object().shape({
   email: yup
     .string()
     .required(" please provide your email ,Your email must be unique too  ")
-    .email("Must be a valid email"),
+    .email("Must be a valid and unique email"),
   password: yup
     .string()
     .required(" please provide a password   ")
@@ -102,7 +102,7 @@ function SignUp() {
             value={email}
             {...register("email")}
             onChange={(e) => setemail(e.target.value)}
-            label="Email"
+            label="Email "
             placeholder="email"
             type="email"
           />
