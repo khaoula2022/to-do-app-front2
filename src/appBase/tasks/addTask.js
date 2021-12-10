@@ -14,12 +14,17 @@ import { createTask, update } from "./taskSlice";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+//const today = new Date(Date.now());
 
 const schema = yup.object().shape({
   label: yup.string().required(" your task should have a name "),
   description: yup
     .string()
     .required(" please provide more details about your task"),
+  deadline: yup
+    .date()
+    .required("you must add a deadline")
+    .min(new Date(), "Deadline cannot be in the past"),
 });
 function AddTask({ currentId, setcurrentId }) {
   const task = useSelector((state) =>
@@ -38,6 +43,7 @@ function AddTask({ currentId, setcurrentId }) {
     label: "",
     description: "",
     deadline: "",
+    creator: " ",
   });
 
   const dispatch = useDispatch();
@@ -139,8 +145,10 @@ function AddTask({ currentId, setcurrentId }) {
               <p>{errors.description?.message} </p>
               <TextField
                 id="date"
+                {...register("deadline")}
                 label="Deadline"
                 type="date"
+                inputFormat="MM/dd/yyyy"
                 defaultValue="01-01-2022"
                 sx={{ width: 220 }}
                 value={taskData.deadline}
@@ -151,6 +159,7 @@ function AddTask({ currentId, setcurrentId }) {
                   shrink: true,
                 }}
               />
+              <p>{errors.deadline?.message} </p>
             </DialogContent>
             <DialogActions>
               <Button onClick={handleClose} color="primary">

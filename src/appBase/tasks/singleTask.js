@@ -32,21 +32,28 @@ function SingleTask({ tasks, setCurrentId }) {
     <div>
       <Card className={styles.card}>
         <CardHeader
+          style={{ backgroundColor: "yellow" }}
           title={tasks.label}
-          subheader={tasks.createdAt}
+          subheader={"Deadline :" + tasks.deadline}
           action={
             <IconButton aria-label="settings">
               <EditIcon onClick={() => setCurrentId(tasks._id)} />
             </IconButton>
           }
         ></CardHeader>
-        <CardMedia className={styles.media} title={tasks.label}></CardMedia>
-        <CardContent>
+        <CardMedia
+          className={styles.media}
+          title={tasks.description}
+        ></CardMedia>
+        <CardContent style={{ backgroundColor: "aqua" }}>
           <Typography variant="body2" color="textSecondary" component="p">
-            {tasks.description}
+            About the Task : {tasks.description}
           </Typography>
         </CardContent>
-        <CardActions className={styles.cardActions}>
+        <CardActions
+          className={styles.cardActions}
+          style={{ backgroundColor: "pink" }}
+        >
           <Button
             size="small"
             color="primary"
