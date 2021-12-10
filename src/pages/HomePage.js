@@ -22,7 +22,6 @@ function HomePage() {
       flexGrow: 1,
     },
   }));
-  const classes = useStyles();
   return (
     <div className={styles.LandingPage}>
       <div className={styles.nav}>

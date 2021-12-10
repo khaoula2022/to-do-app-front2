@@ -6,9 +6,8 @@ import { GetTasks, searchTaskF } from "../appBase/tasks/taskSlice";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 
-import { useState, useRef } from "react";
+import { useState } from "react";
 import AddTask from "./../appBase/tasks/AddTask";
-import { Button } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
 import { logout } from "./../appBase/user/actions/auth";
 function Tasks() {

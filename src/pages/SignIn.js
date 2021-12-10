@@ -4,7 +4,7 @@ import { Alert } from "@material-ui/lab";
 
 import { useHistory } from "react-router";
 import styles from "./signup.module.css";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -20,7 +20,7 @@ import {
   TextField,
 } from "@material-ui/core";
 import { Visibility, VisibilityOff } from "@material-ui/icons";
-import authService from "../appBase/user/services/auth.service";
+//import authService from "../appBase/user/services/auth.service";
 import { login } from "../appBase/user/actions/auth";
 const schema = yup.object().shape({
   email: yup

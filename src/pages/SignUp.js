@@ -4,12 +4,11 @@ import {
   IconButton,
   Input,
   InputAdornment,
-  TextField,
 } from "@material-ui/core";
 import { Visibility, VisibilityOff } from "@material-ui/icons";
 import React from "react";
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import styles from "./signup.module.css";
 import { registerUser } from "./../appBase/user/actions/auth";
