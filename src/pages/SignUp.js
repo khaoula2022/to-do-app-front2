@@ -21,9 +21,12 @@ const schema = yup.object().shape({
   username: yup.string().required("please provide a username"),
   email: yup
     .string()
-    .required(" please provide a valid email ")
+    .required(" please provide your email ,Your email must be unique too  ")
     .email("Must be a valid email"),
-  password: yup.string().required(" please provide a password "),
+  password: yup
+    .string()
+    .required(" please provide a password   ")
+    .min(6, "Must contain at least 6 characters"),
   confirmpassword: yup
     .string()
     .required(" please confirm your password ")
