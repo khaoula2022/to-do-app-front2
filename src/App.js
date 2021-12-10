@@ -1,16 +1,9 @@
 import "./App.css";
 import React, { Suspense } from "react";
-import AppBase from "./appBase/AppBase";
 import Loader from "./pages/Loader";
-import Tasks from "./pages/Tasks";
 import { useSelector } from "react-redux";
 
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Redirect,
-} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 function App() {
   const user = useSelector((state) => state.user.user);

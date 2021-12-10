@@ -21,7 +21,6 @@ import { deleteTask } from "./taskSlice";
 
 function SingleTask({ tasks, setCurrentId }) {
   const dispatch = useDispatch();
-  const history = useHistory();
   const [confirmDialog, setConfirmDialog] = useState({
     isOpen: false,
     title: "",
