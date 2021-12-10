@@ -43,6 +43,7 @@ function AddTask({ currentId, setcurrentId }) {
     label: "",
     description: "",
     deadline: "",
+    creator: " ",
   });
 
   const dispatch = useDispatch();
